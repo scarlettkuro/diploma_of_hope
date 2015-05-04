@@ -14,12 +14,12 @@ public class BlockAutomata {
 
 	public boolean[] step() {
 		//apply local rule to each block of the layer
-		for(int i=dx; i<_cur.length/rule.blockSize(); i++) {
+		for(int i=dx; i<_cur.length-1; i+=rule.blockSize()) {
 			boolean[] ans = rule.step(i, _cur); //get new values of elements in the block
 			for(int j=0; j<ans.length;j++) //and put them here
 				_cur[i+j] = ans[j];
 		}
-		dx++;
+		dx++; dx = dx % rule.blockSize();
 		return _cur;
 	}
 
