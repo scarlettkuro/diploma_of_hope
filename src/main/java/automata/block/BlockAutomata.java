@@ -1,14 +1,22 @@
 package automata.block;
 
 
+import automata.Automata;
 import automata.block.rules.iBlockLocalRule;
 
-public class BlockAutomata {
+public class BlockAutomata implements Automata {
 	private boolean[] _cur; //current layer with elements
 	int dx = 0; //count of steps
 	iBlockLocalRule rule; //local rule
+
+	public BlockAutomata() {
+	}
 	
 	public BlockAutomata(boolean[] init) {
+		setState(init);
+	}
+
+	public void setState(boolean[] init) {
 		_cur = init;
 	}
 

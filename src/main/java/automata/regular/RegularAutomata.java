@@ -1,18 +1,23 @@
 package automata.regular;
 
 
+import automata.Automata;
 import automata.regular.rules.iRegularLocalRule;
 
-public class RegularAutomata {
+public class RegularAutomata implements Automata {
 	private boolean[] _cur; //current layer of elements
 	private boolean[] _next; //layer  where we put new values of elemets
 	iRegularLocalRule rule;
 	
 	public RegularAutomata(boolean[] init) {
+		setState(init);
+	}
+
+	public void setState(boolean[] init) {
 		_cur = init;
 		_next = _cur.clone();
 	}
-	
+
 	public boolean[] step() {
 		//apply local rule to each element
 		for(int i=0; i<_next.length; i++)
