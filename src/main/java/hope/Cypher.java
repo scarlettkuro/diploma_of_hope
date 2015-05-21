@@ -29,8 +29,8 @@ public class Cypher {
         return true;
 
     }
-    
-    public void Crypt(InputStream i,OutputStream o) {
+
+    public void crypt(InputStream i,OutputStream o) {
         input = i;
         output = o;
         while(cryptBlock()) ;
