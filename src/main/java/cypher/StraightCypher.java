@@ -18,23 +18,28 @@ public class StraightCypher implements  Cypher  {
     Automata automata;
 
     protected boolean cryptBlock() {
-        byte[] hey = new byte[8];
         try {
+            int left = input.available();
+            if (left==0) return false;
+            byte[] hey = new byte[Math.min(left,8)];
             input.read(hey);
             automata.setState(Decoder.bytebit(hey));
             output.write(Decoder.bitbyte(automata.getMatrix()));
         } catch (IOException e) {
             return false;
         }
-
         return true;
-
     }
 
     public void crypt(InputStream i,OutputStream o) {
         input = i;
         output = o;
-        while(cryptBlock()) ;
+        while(cryptBlock()) ;/*
+        try {
+            output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
     }
 
     public void setAutomata(Automata a) {

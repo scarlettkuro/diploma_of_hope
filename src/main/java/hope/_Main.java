@@ -1,5 +1,7 @@
 package hope;
 
+import automata.Automata;
+import automata.TrivialAutomata;
 import automata.block.BlockAutomata;
 import automata.block.rules.*;
 import cypher.StraightCypher;
@@ -21,17 +23,20 @@ public class _Main {
 			printMatrix(Decoder.bitbyte(a.step()));
 		*/
 		StraightCypher crypt = new StraightCypher();
-		BlockAutomata a = new BlockAutomata();
-		a.setRule(new BlockLocalRuleA());
+		Automata a = new TrivialAutomata();
 		crypt.setAutomata(a);
 		try {
 			FileInputStream fi = new FileInputStream("suka");
 			System.out.println("hello");
 			FileOutputStream fo = new FileOutputStream("sukad");
+			System.out.println("we cont");
 			crypt.crypt(fi, fo);
+			System.out.println("fuck off");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+
+		System.out.println("well bye");
 	}
 
 	public static void printMatrix(byte[] b) {
