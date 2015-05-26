@@ -34,12 +34,7 @@ public class StraightCypher implements  Cypher  {
     public void crypt(InputStream i,OutputStream o) {
         input = i;
         output = o;
-        while(cryptBlock()) ;/*
-        try {
-            output.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        while(cryptBlock());
     }
 
     public void setAutomata(Automata a) {
