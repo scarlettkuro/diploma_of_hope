@@ -50,9 +50,10 @@ public class _Main  extends Application {
 		stage.setScene(scene);
 
 
-		UI_Controller controller = (UI_Controller) loader.getController();
+		UI_Controller controller = loader.getController();
 		controller.setStage(stage);
 		controller.addCypher(new StraightCypher());
+
 
 		stage.show();
 	}
