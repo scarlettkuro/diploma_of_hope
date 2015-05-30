@@ -2,6 +2,7 @@ package hope;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -9,18 +10,35 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by kuro on 30.05.15.
  */
 public class UI_Controller {
+
     @FXML
     private TabPane tabs;
 
+    /**/
+    @FXML private Button openInputFile;
+    @FXML private TextField openInputFileField;
+    @FXML private Button openOutputFile;
+    @FXML private TextField openOutputFileField;
+
+    Map<Button, TextField> map = null;
+    /**/
+
     Stage stage;
     FileChooser chooser = new FileChooser();
-
     private int tabIndex = 0;
+
+    public void init () {
+        map = new HashMap<Button, TextField>();
+        map.put(openInputFile,openInputFileField);
+        map.put(openOutputFile,openOutputFileField);
+    }
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -46,7 +64,16 @@ public class UI_Controller {
 
         //refresh textfield
         Control caller = (Control)e.getSource();
+
+        /* first variant
         String textfield = "#" + caller.getId() + "Field";
         ((TextField) stage.getScene().lookup(textfield)).setText(file);
+        */
+
+        /*second variant */
+        if (map==null) init();
+        map.get(caller).setText(file);
+
+
     }
 }
