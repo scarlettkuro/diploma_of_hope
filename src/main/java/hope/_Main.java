@@ -42,11 +42,13 @@ public class _Main  extends Application {
 */
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/fine.fxml"));
-
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fine.fxml"));
+		Parent root = loader.load();
+		((UI_Controller)loader.getController()).setStage(stage);
 		Scene scene = new Scene(root, 500, 350);
 
 		stage.setTitle("FXML Welcome");
+
 		stage.setScene(scene);
 		stage.show();
 	}

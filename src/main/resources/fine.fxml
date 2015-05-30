@@ -77,8 +77,8 @@
                <center>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="300.0" />
-                        <Button mnemonicParsing="false" text="Шукати..." />
+                        <TextField fx:id="openInputFileField" prefHeight="25.0" prefWidth="300.0" />
+                        <Button fx:id="openInputFile" mnemonicParsing="false" onAction="#openFile" text="Шукати..." />
                      </children>
                   </HBox>
                </center>
@@ -144,8 +144,8 @@
                <center>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="300.0" />
-                        <Button mnemonicParsing="false" text="Обрати..." />
+                        <TextField fx:id="openOutputFileField" prefHeight="25.0" prefWidth="300.0" />
+                        <Button fx:id="openOutputFile" mnemonicParsing="false" onAction="#openFile" text="Обрати..." />
                      </children>
                   </HBox>
                </center>
