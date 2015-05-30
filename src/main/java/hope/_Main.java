@@ -44,12 +44,17 @@ public class _Main  extends Application {
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fine.fxml"));
 		Parent root = loader.load();
-		((UI_Controller)loader.getController()).setStage(stage);
+
 		Scene scene = new Scene(root, 500, 350);
-
 		stage.setTitle("FXML Welcome");
-
 		stage.setScene(scene);
+
+
+		UI_Controller controller = (UI_Controller) loader.getController();
+		controller.setStage(stage);
+		controller.addCypher("hui");
+		controller.addCypher("zhopa");
+
 		stage.show();
 	}
 

@@ -11,4 +11,5 @@ import java.io.OutputStream;
 public interface Cypher {
     void crypt(InputStream i,OutputStream o);
     void setAutomata(Automata a);
+    String getName();
 }

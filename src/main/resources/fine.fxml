@@ -106,16 +106,8 @@
                       </GridPane>
                   </bottom>
                <center>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <VBox fx:id="cyphers" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="Алгоритм 1">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="automata" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="Алгоритм 2" toggleGroup="$automata" />
-                        <RadioButton mnemonicParsing="false" text="Алгоритм 3" toggleGroup="$automata" />
-                        <RadioButton mnemonicParsing="false" text="Алгоритм 4" toggleGroup="$automata" />
                      </children>
                   </VBox>
                </center>

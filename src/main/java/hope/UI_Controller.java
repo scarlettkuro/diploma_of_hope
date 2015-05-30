@@ -1,11 +1,10 @@
 package hope;
 
+import cypher.Cypher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -21,6 +20,9 @@ public class UI_Controller {
     @FXML
     private TabPane tabs;
 
+    @FXML
+    private VBox cyphers;
+
     /**/
     @FXML private Button openInputFile;
     @FXML private TextField openInputFileField;
@@ -30,8 +32,12 @@ public class UI_Controller {
     Map<Button, TextField> map = null;
     /**/
 
+    final ToggleGroup automata = new ToggleGroup();
+
     Stage stage;
     FileChooser chooser = new FileChooser();
+
+
     private int tabIndex = 0;
 
     public void init () {
@@ -75,5 +81,21 @@ public class UI_Controller {
         map.get(caller).setText(file);
 
 
+    }
+
+    public void addCypher(Cypher cypher) {
+        RadioButton radio = new RadioButton(cypher.getName());
+        radio.setUserData(cypher);
+        radio.setToggleGroup(automata);
+        if (cyphers.getChildren().size() == 0)
+            radio.setSelected(true);
+
+        cyphers.getChildren().add(radio);
+    }
+
+    public void collectAllData() {
+        String inputFile = openInputFileField.getText();
+        String outputFile = openOutputFileField.getText();
+        Cypher cypher = (Cypher)automata.getSelectedToggle().getUserData();
     }
 }

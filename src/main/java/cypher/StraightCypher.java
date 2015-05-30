@@ -40,4 +40,8 @@ public class StraightCypher implements  Cypher  {
     public void setAutomata(Automata a) {
         automata = a;
     }
+
+    public String getName() {
+        return "Straight";
+    }
 }
