@@ -5,38 +5,30 @@ import automata.TrivialAutomata;
 import automata.block.BlockAutomata;
 import automata.block.rules.*;
 import cypher.StraightCypher;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-public class _Main {
+public class _Main  extends Application {
 
-	public static void main(String[] args) {
-		/*byte[] b = new byte[42];
-		for(int i=0;i<b.length;i++)
-			b[i] = 'a';
-		BlockAutomata a = new BlockAutomata(Decoder.bytebit(b));
-		a.setRule(new BlockLocalRuleB());
-		printMatrix(Decoder.bitbyte(a.getMatrix()));
-		for(int i=0; i<100; i++)
-			printMatrix(Decoder.bitbyte(a.step()));
-		*/
+/*	public static void main(String[] args) {
+
 		StraightCypher crypt = new StraightCypher();
 		Automata a = new TrivialAutomata();
 		crypt.setAutomata(a);
 		try {
 			FileInputStream fi = new FileInputStream("suka");
-			System.out.println("hello");
 			FileOutputStream fo = new FileOutputStream("sukad");
-			System.out.println("we cont");
 			crypt.crypt(fi, fo);
-			System.out.println("fuck off");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		System.out.println("well bye");
 	}
 
 	public static void printMatrix(byte[] b) {
@@ -44,6 +36,21 @@ public class _Main {
 			System.out.print(String.format("%02X ", b[i]));
 
 		System.out.println("");
+	}
+*/
+	@Override
+	public void start(Stage stage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("/fine.fxml"));
+
+		Scene scene = new Scene(root, 500, 350);
+
+		stage.setTitle("FXML Welcome");
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
 	}
 
 }
