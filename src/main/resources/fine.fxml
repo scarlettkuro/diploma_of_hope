@@ -12,46 +12,92 @@
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab text="Початок роботи">
-      <content>
-
-                  <GridPane layoutX="99.0" layoutY="33.0" prefHeight="233.0" prefWidth="403.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <ToggleButton mnemonicParsing="false" prefHeight="25.0" prefWidth="237.0" text="Шифрування" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="mode" />
-                     </toggleGroup>
-                  </ToggleButton>
-                        <ToggleButton mnemonicParsing="false" prefHeight="25.0" prefWidth="252.0" text="Розшифрування" toggleGroup="$mode" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" text="Далі" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                     </children>
-                  </GridPane>
-      </content>
+        <content>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+                <bottom>
+                    <GridPane alignment="TOP_CENTER" prefHeight="80" prefWidth="600.0" BorderPane.alignment="CENTER">
+                        <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints valignment="TOP" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                            <Button mnemonicParsing="false" text="Далі" GridPane.columnIndex="2" />
+                        </children>
+                    </GridPane>
+                </bottom>
+            </BorderPane>
+        </content>
     </Tab>
     <Tab text="Джерело">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
+        <content>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+                <bottom>
+                    <GridPane alignment="TOP_CENTER" prefHeight="80" prefWidth="600.0" BorderPane.alignment="CENTER">
+                        <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints valignment="TOP" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                            <Button mnemonicParsing="false" text="Назад" GridPane.columnIndex="0" />
+                            <Button mnemonicParsing="false" text="Далі" GridPane.columnIndex="2" />
+                        </children>
+                    </GridPane>
+                </bottom>
+            </BorderPane>
+        </content>
+
     </Tab>
       <Tab text="Алгоритм">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </content>
+          <content>
+              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <bottom>
+                      <GridPane alignment="TOP_CENTER" prefHeight="80" prefWidth="600.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints valignment="TOP" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                          <children>
+                              <Button mnemonicParsing="false" text="Назад" GridPane.columnIndex="0" />
+                              <Button mnemonicParsing="false" text="Далі" GridPane.columnIndex="2" />
+                          </children>
+                      </GridPane>
+                  </bottom>
+              </BorderPane>
+          </content>
       </Tab>
       <Tab text="Результат">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </content>
+          <content>
+              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <bottom>
+                      <GridPane alignment="TOP_CENTER" prefHeight="80" prefWidth="600.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints valignment="TOP" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                          <children>
+                              <Button mnemonicParsing="false" text="Назад" GridPane.columnIndex="0" />
+                              <Button mnemonicParsing="false" text="Виконати!" GridPane.columnIndex="2" />
+                          </children>
+                      </GridPane>
+                  </bottom>
+              </BorderPane>
+          </content>
       </Tab>
   </tabs>
 </TabPane>
