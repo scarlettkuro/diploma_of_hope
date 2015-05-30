@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +18,9 @@ public class UI_Controller {
 
     @FXML
     private TabPane tabs;
+
+    @FXML
+    private ToggleGroup mode;
 
     @FXML
     private VBox cyphers;
@@ -51,13 +53,17 @@ public class UI_Controller {
     }
 
     public void handle_prev_button(ActionEvent e) {
-        tabIndex = --tabIndex < 0 ? tabs.getTabs().size() : tabIndex;
-        tabs.getSelectionModel().select(tabIndex);
+        //tabIndex = --tabIndex < 0 ? 0 : tabIndex;
+        tabs.getSelectionModel().select(--tabIndex);
     }
 
     public void handle_next_button(ActionEvent e) {
-        tabIndex = ++tabIndex >  tabs.getTabs().size() ? 0 : tabIndex;
-        tabs.getSelectionModel().select(tabIndex);
+        //tabIndex = ++tabIndex >=  tabs.getTabs().size() ? tabs.getTabs().size()-1 : tabIndex;
+        tabs.getSelectionModel().select(++tabIndex);
+    }
+
+    public void changeTab() {
+        tabIndex = tabs.getSelectionModel().getSelectedIndex();
     }
 
     public void openFile(ActionEvent e) {
@@ -97,5 +103,7 @@ public class UI_Controller {
         String inputFile = openInputFileField.getText();
         String outputFile = openOutputFileField.getText();
         Cypher cypher = (Cypher)automata.getSelectedToggle().getUserData();
+        int cmode = mode.getToggles().indexOf(mode.getSelectedToggle());
+        boolean cbmode = mode.getToggles().indexOf(mode.getSelectedToggle())==0; //true = шифрування
     }
 }

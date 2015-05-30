@@ -52,8 +52,7 @@ public class _Main  extends Application {
 
 		UI_Controller controller = (UI_Controller) loader.getController();
 		controller.setStage(stage);
-		controller.addCypher("hui");
-		controller.addCypher("zhopa");
+		controller.addCypher(new StraightCypher());
 
 		stage.show();
 	}

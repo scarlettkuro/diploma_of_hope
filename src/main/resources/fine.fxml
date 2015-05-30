@@ -11,7 +11,7 @@
 
 <TabPane fx:id="tabs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hope.UI_Controller">
   <tabs>
-    <Tab text="Початок роботи">
+    <Tab onSelectionChanged="#changeTab" text="Початок роботи">
         <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                 <bottom>
@@ -55,7 +55,7 @@
             </BorderPane>
         </content>
     </Tab>
-    <Tab text="Джерело">
+    <Tab onSelectionChanged="#changeTab" text="Джерело">
         <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                 <bottom>
@@ -86,7 +86,7 @@
         </content>
 
     </Tab>
-      <Tab text="Алгоритм">
+      <Tab onSelectionChanged="#changeTab" text="Алгоритм">
           <content>
               <BorderPane prefHeight="200.0" prefWidth="200.0">
                   <bottom>
@@ -114,7 +114,7 @@
               </BorderPane>
           </content>
       </Tab>
-      <Tab text="Результат">
+      <Tab onSelectionChanged="#changeTab" text="Результат">
           <content>
               <BorderPane prefHeight="200.0" prefWidth="200.0">
                   <bottom>
