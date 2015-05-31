@@ -1,7 +1,6 @@
 package UI;
 
 import application.CypherServiceImpl;
-import domain.cypher.StraightCypher;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +11,7 @@ public class _Main  extends Application {
 
 /*	public static void main(String[] args) {
 
-		StraightCypher crypt = new StraightCypher();
+		StraightCypherMethod crypt = new StraightCypherMethod();
 		Automata a = new TrivialAutomata();
 		crypt.setAutomata(a);
 		try {

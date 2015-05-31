@@ -1,17 +1,18 @@
-package domain.cypher;
+package domain.cyphermethod;
 
 /**
  * Created by kuro on 21.05.15.
  */
 
 import domain.automata.Automata;
+import domain.cypher.Cypher;
 import domain.misc.Decoder;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class StraightCypher implements  Cypher  {
+public class StraightCypherMethod implements CypherMethod {
 
     InputStream input;
     OutputStream output;
@@ -35,6 +36,10 @@ public class StraightCypher implements  Cypher  {
         input = i;
         output = o;
         while(cryptBlock());
+    }
+
+    public void decrypt(InputStream i, OutputStream o) {
+
     }
 
     public void setAutomata(Automata a) {

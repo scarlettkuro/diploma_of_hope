@@ -1,13 +1,13 @@
 package application;
 
 import domain.cypher.Cypher;
-import domain.cypher.StraightCypher;
+import domain.cypher.SimpleCypher;
+import domain.cyphermethod.StraightCypherMethod;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by kuro on 31.05.15.
@@ -18,7 +18,7 @@ public class CypherServiceImpl implements CypherService {
 
     public CypherServiceImpl() {
         cyphers = new HashMap<String,Cypher>();
-        cyphers.put("straight",new StraightCypher());
+        cyphers.put("straight",new SimpleCypher());
     }
 
     public Iterator<String> getIdList() { return cyphers.keySet().iterator(); }
