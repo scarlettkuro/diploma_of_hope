@@ -36,6 +36,8 @@ public class CypherServiceImpl implements CypherService {
 
         if (mode)
             cyphers.get(id).crypt(finput,foutput);
+        else
+            cyphers.get(id).decrypt(finput,foutput);
 
     }
 }

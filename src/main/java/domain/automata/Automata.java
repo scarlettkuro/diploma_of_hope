@@ -5,8 +5,8 @@ package domain.automata;
  */
 public interface Automata {
 
-    public void setState(boolean[] init);
-    public boolean[] step() ;
-    public boolean[] step(int n) ;
-    public boolean[] getMatrix();
+    void setState(boolean[] init);
+    boolean[] step() ;
+    boolean[] step(int n) ;
+    boolean[] getMatrix();
 }

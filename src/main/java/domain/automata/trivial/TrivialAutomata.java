@@ -1,9 +1,12 @@
-package domain.automata;
+package domain.automata.trivial;
+
+import domain.automata.Automata;
+import domain.automata.ReversibleAutomata;
 
 /**
  * Created by kuro on 22.05.15.
  */
-public class TrivialAutomata implements Automata {
+public class TrivialAutomata implements ReversibleAutomata {
     boolean[] state;
     public void setState(boolean[] init) {
         state = init;
@@ -18,6 +21,14 @@ public class TrivialAutomata implements Automata {
     }
 
     public boolean[] getMatrix() {
+        return state;
+    }
+
+    public boolean[] stepback() {
+        return state;
+    }
+
+    public boolean[] stepback(int n)  {
         return state;
     }
 }
