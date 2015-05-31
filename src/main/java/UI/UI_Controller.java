@@ -119,7 +119,12 @@ public class UI_Controller {
         try {
             service.transformFile(inputFile, outputFile, cbmode, cypher);
         } catch (FileNotFoundException e) {
-            System.out.println("There is no such file!");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Помилка");
+            alert.setHeaderText("Такого файла не існує");
+            alert.setContentText("Перевірте, чи правильно ви вказали файл");
+
+            alert.showAndWait();
         }
         /*
         System.out.println(inputFile);
