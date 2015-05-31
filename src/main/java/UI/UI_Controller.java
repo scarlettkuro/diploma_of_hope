@@ -1,5 +1,6 @@
 package UI;
 
+import application.CypherService;
 import domain.cypher.Cypher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +9,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -35,7 +38,7 @@ public class UI_Controller {
     /**/
 
     final ToggleGroup automata = new ToggleGroup();
-
+    CypherService service;
     Stage stage;
     FileChooser chooser = new FileChooser();
 
@@ -46,11 +49,19 @@ public class UI_Controller {
         map = new HashMap<Button, TextField>();
         map.put(openInputFile,openInputFileField);
         map.put(openOutputFile,openOutputFileField);
+
+        Iterator<String> ids = service.getIdList();
+        while(ids.hasNext()) {
+            String id = ids.next();
+            addCypher(id,service.getNameOf(id));
+        }
     }
 
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+    public void setService(CypherService service) { this.service = service; }
 
     public void handle_prev_button(ActionEvent e) {
         //tabIndex = --tabIndex < 0 ? 0 : tabIndex;
@@ -83,15 +94,15 @@ public class UI_Controller {
         */
 
         /*second variant */
-        if (map==null) init();
+        //if (map==null) init();
         map.get(caller).setText(file);
 
 
     }
 
-    public void addCypher(Cypher cypher) {
-        RadioButton radio = new RadioButton(cypher.getName());
-        radio.setUserData(cypher);
+    public void addCypher(String id, String name) {
+        RadioButton radio = new RadioButton(name);
+        radio.setUserData(id);
         radio.setToggleGroup(automata);
         if (cyphers.getChildren().size() == 0)
             radio.setSelected(true);
@@ -102,13 +113,18 @@ public class UI_Controller {
     public void collectAllData() {
         String inputFile = openInputFileField.getText();
         String outputFile = openOutputFileField.getText();
-        Cypher cypher = (Cypher)automata.getSelectedToggle().getUserData();
-        int cmode = mode.getToggles().indexOf(mode.getSelectedToggle());
+        String cypher = (String)automata.getSelectedToggle().getUserData();
         boolean cbmode = mode.getToggles().indexOf(mode.getSelectedToggle())==0; //true = шифрування
 
+        try {
+            service.transformFile(inputFile, outputFile, cbmode, cypher);
+        } catch (FileNotFoundException e) {
+            System.out.println("There is no such file!");
+        }
+        /*
         System.out.println(inputFile);
         System.out.println(outputFile);
         System.out.println(cypher.getName());
-        System.out.println(cbmode);
+        System.out.println(cbmode);*/
     }
 }

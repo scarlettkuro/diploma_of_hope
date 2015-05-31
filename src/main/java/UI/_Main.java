@@ -1,5 +1,6 @@
 package UI;
 
+import application.CypherServiceImpl;
 import domain.cypher.StraightCypher;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -36,13 +37,14 @@ public class _Main  extends Application {
 		Parent root = loader.load();
 
 		Scene scene = new Scene(root, 500, 350);
-		stage.setTitle("FXML Welcome");
+		stage.setTitle("CAme");
 		stage.setScene(scene);
 
 
 		UI_Controller controller = loader.getController();
 		controller.setStage(stage);
-		controller.addCypher(new StraightCypher());
+		controller.setService(new CypherServiceImpl());
+		controller.init();
 
 
 		stage.show();
