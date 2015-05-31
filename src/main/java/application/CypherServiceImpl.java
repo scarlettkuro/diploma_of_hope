@@ -45,5 +45,9 @@ public class CypherServiceImpl implements CypherService {
         else
             cyphers.get(id).decrypt(finput,foutput);
 
+        if (mode)
+            LOG.info("Encryption finished properly");
+        else
+            LOG.info("Decryption finished properly");
     }
 }
