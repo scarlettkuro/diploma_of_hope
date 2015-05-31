@@ -1,4 +1,4 @@
-package automata.regular.rules;
+package domain.automata.regular.rules;
 
 
 public class RegularLocalRuleA implements iRegularLocalRule {

@@ -1,4 +1,4 @@
-package automata;
+package domain.automata;
 
 /**
  * Created by kuro on 22.05.15.

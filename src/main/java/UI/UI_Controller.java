@@ -1,6 +1,6 @@
-package hope;
+package UI;
 
-import cypher.Cypher;
+import domain.cypher.Cypher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -105,5 +105,10 @@ public class UI_Controller {
         Cypher cypher = (Cypher)automata.getSelectedToggle().getUserData();
         int cmode = mode.getToggles().indexOf(mode.getSelectedToggle());
         boolean cbmode = mode.getToggles().indexOf(mode.getSelectedToggle())==0; //true = шифрування
+
+        System.out.println(inputFile);
+        System.out.println(outputFile);
+        System.out.println(cypher.getName());
+        System.out.println(cbmode);
     }
 }

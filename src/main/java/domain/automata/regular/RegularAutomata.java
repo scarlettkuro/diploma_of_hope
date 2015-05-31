@@ -1,8 +1,8 @@
-package automata.regular;
+package domain.automata.regular;
 
 
-import automata.Automata;
-import automata.regular.rules.iRegularLocalRule;
+import domain.automata.Automata;
+import domain.automata.regular.rules.iRegularLocalRule;
 
 public class RegularAutomata implements Automata {
 	private boolean[] _cur; //current layer of elements

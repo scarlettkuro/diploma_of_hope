@@ -1,6 +1,6 @@
-package hope;
+package domain.misc;
 
-//transform byte data to boolean data for cellular automata
+//transform byte data to boolean data for cellular domain.automata
 
 public class Decoder {
 	static public boolean[] bytebit(byte[] orig) {

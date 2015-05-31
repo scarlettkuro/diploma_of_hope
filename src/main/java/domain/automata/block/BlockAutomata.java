@@ -1,8 +1,8 @@
-package automata.block;
+package domain.automata.block;
 
 
-import automata.Automata;
-import automata.block.rules.iBlockLocalRule;
+import domain.automata.Automata;
+import domain.automata.block.rules.iBlockLocalRule;
 
 public class BlockAutomata implements Automata {
 	private boolean[] _cur; //current layer with elements

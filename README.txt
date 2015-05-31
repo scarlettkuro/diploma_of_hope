@@ -4,7 +4,7 @@ JDK : 1.8 (using JavaFX)
 
 I support now:
 Plain (regular) automata : with N inputs to one output
-Block automata : with input and output to some group of elemets
+Block automata : with input and output to some group of elements
 Trivial automata: doesn't change anything
 
 Straight Cypher : only pass data through CA

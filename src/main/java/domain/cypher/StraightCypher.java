@@ -1,11 +1,11 @@
-package cypher;
+package domain.cypher;
 
 /**
  * Created by kuro on 21.05.15.
  */
 
-import automata.Automata;
-import hope.Decoder;
+import domain.automata.Automata;
+import domain.misc.Decoder;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,21 +1,11 @@
-package hope;
+package UI;
 
-import automata.Automata;
-import automata.TrivialAutomata;
-import automata.block.BlockAutomata;
-import automata.block.rules.*;
-import cypher.StraightCypher;
+import domain.cypher.StraightCypher;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 
 public class _Main  extends Application {
 
