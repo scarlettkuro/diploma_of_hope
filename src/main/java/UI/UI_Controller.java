@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -18,6 +19,8 @@ import java.util.Map;
  * Created by kuro on 30.05.15.
  */
 public class UI_Controller {
+
+    static private final Logger LOG=Logger.getLogger(UI_Controller.class);
 
     @FXML
     private TabPane tabs;
@@ -37,15 +40,16 @@ public class UI_Controller {
     Map<Button, TextField> map = null;
     /**/
 
-    final ToggleGroup automata = new ToggleGroup();
-    CypherService service;
-    Stage stage;
-    FileChooser chooser = new FileChooser();
+    private final ToggleGroup automata = new ToggleGroup();
+    private CypherService service;
+    private Stage stage;
+    private  FileChooser chooser = new FileChooser();
 
 
     private int tabIndex = 0;
 
     public void init () {
+        LOG.info("UI Controller initialize");
         map = new HashMap<Button, TextField>();
         map.put(openInputFile,openInputFileField);
         map.put(openOutputFile,openOutputFileField);
@@ -119,6 +123,7 @@ public class UI_Controller {
         try {
             service.transformFile(inputFile, outputFile, cbmode, cypher);
         } catch (FileNotFoundException e) {
+            LOG.error("No such input file or path specified wrong");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Помилка");
             alert.setHeaderText("Такого файла не існує");

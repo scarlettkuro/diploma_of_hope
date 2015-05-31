@@ -6,32 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 public class _Main  extends Application {
 
-/*	public static void main(String[] args) {
-
-		StraightCypherMethod crypt = new StraightCypherMethod();
-		Automata a = new TrivialAutomata();
-		crypt.setAutomata(a);
-		try {
-			FileInputStream fi = new FileInputStream("suka");
-			FileOutputStream fo = new FileOutputStream("sukad");
-			crypt.crypt(fi, fo);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void printMatrix(byte[] b) {
-		for(int i=0;i<b.length;i++)
-			System.out.print(String.format("%02X ", b[i]));
-
-		System.out.println("");
-	}
-*/
+	static private final Logger LOG=Logger.getLogger(_Main.class);
 	@Override
 	public void start(Stage stage) throws Exception {
+		LOG.info("Loading .fxml markup");
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fine.fxml"));
 		Parent root = loader.load();
 
@@ -39,18 +21,25 @@ public class _Main  extends Application {
 		stage.setTitle("CAme");
 		stage.setScene(scene);
 
+		LOG.info("Connect controller");
 
 		UI_Controller controller = loader.getController();
 		controller.setStage(stage);
 		controller.setService(new CypherServiceImpl());
 		controller.init();
 
-
+		LOG.info("Show UI");
 		stage.show();
+
 	}
 
 	public static void main(String[] args) {
+		LOG.info("ACme started\n");
+
 		launch(args);
+
+
+		LOG.info("ACme closed");
 	}
 
 

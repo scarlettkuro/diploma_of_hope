@@ -3,6 +3,7 @@ package application;
 import domain.cypher.Cypher;
 import domain.cypher.SimpleCypher;
 import domain.cyphermethod.StraightCypherMethod;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.HashMap;
@@ -13,8 +14,8 @@ import java.util.Map;
  * Created by kuro on 31.05.15.
  */
 public class CypherServiceImpl implements CypherService {
-
-    Map<String,Cypher> cyphers;
+    static private final Logger LOG=Logger.getLogger(CypherServiceImpl.class);
+    private  Map<String,Cypher> cyphers;
 
     public CypherServiceImpl() {
         cyphers = new HashMap<String,Cypher>();
@@ -28,6 +29,11 @@ public class CypherServiceImpl implements CypherService {
     }
 
     public void transformFile(String input, String output, boolean mode, String id) throws FileNotFoundException {
+        if (mode)
+            LOG.info("Encryption of file: " + input + " to " + output + " with " + id);
+        else
+            LOG.info("Decryption of file: " + input + " to " + output + " with " + id);
+
         InputStream finput;
         OutputStream foutput;
 
