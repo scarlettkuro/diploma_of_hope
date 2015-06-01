@@ -5,9 +5,7 @@ import com.fasteasytrade.JRandTest.IO.FileRandomStream;
 import com.fasteasytrade.JRandTest.Tests.Base;
 import com.fasteasytrade.JRandTest.Tests.Count4Bits;
 import com.fasteasytrade.JRandTest.Tests.MonteCarlo;
-import junit.framework.Assert;
 import junit.framework.TestCase;
-import org.junit.Test;
 
 public class RANDTests extends TestCase {
 
@@ -34,7 +32,6 @@ public class RANDTests extends TestCase {
     public void testMonteCarlo() {
         MonteCarlo _test = new MonteCarlo();
         assertTrue(pushTest(_test));
-        Count4Bits test2 = new Count4Bits();
     }
 
     public void testCount4Bits() {
