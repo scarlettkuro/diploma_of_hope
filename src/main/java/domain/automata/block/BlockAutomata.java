@@ -44,8 +44,14 @@ public class BlockAutomata implements ReversibleAutomata {
 	}
 
 	public boolean[] stepback(int n) {
-		for(int i=0; i<n;i++)
-			stepback();
+		//apply local rule to each block of the layer
+		dx = n;
+		for(int i=(dx % rule.blockSize()); i<_cur.length-1; i+=rule.blockSize()) {
+			boolean[] ans = rule.step(i, _cur); //get new values of elements in the block
+			for(int j=0; j<ans.length;j++) //and put them here
+				_cur[i+j] = ans[j];
+		}
+		dx--;
 		return getMatrix();
 	}
 	
