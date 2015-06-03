@@ -2,9 +2,10 @@ package domain.automata.block;
 
 
 import domain.automata.Automata;
+import domain.automata.ReversibleAutomata;
 import domain.automata.block.rules.iBlockLocalRule;
 
-public class BlockAutomata implements Automata {
+public class BlockAutomata implements ReversibleAutomata {
 	private boolean[] _cur; //current layer with elements
 	int dx = 0; //count of steps
 	iBlockLocalRule rule; //local rule
@@ -31,10 +32,20 @@ public class BlockAutomata implements Automata {
 		return _cur;
 	}
 
+	public boolean[] stepback() {
+		return new boolean[0];
+	}
+
 	//make n steps
 	public boolean[] step(int n) {
 		for(int i=0; i<n;i++)
 			step();
+		return getMatrix();
+	}
+
+	public boolean[] stepback(int n) {
+		for(int i=0; i<n;i++)
+			stepback();
 		return getMatrix();
 	}
 	

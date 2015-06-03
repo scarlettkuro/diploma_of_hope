@@ -1,6 +1,7 @@
 package application;
 
 import domain.cypher.Cypher;
+import domain.cypher.RotateAutomataCypher;
 import domain.cypher.SimpleCypher;
 import domain.cyphermethod.StraightCypherMethod;
 import org.apache.log4j.Logger;
@@ -20,6 +21,7 @@ public class CypherServiceImpl implements CypherService {
     public CypherServiceImpl() {
         cyphers = new HashMap<String,Cypher>();
         cyphers.put("straight",new SimpleCypher());
+        cyphers.put("rotate", new RotateAutomataCypher());
     }
 
     public Iterator<String> getIdList() { return cyphers.keySet().iterator(); }
