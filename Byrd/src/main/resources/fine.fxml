@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<TabPane fx:id="tabs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_Controller">
+  <tabs>
+    <Tab onSelectionChanged="#changeTab" text="Початок роботи">
+        <content>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+                <bottom>
+                    <GridPane alignment="TOP_CENTER" prefHeight="80" prefWidth="600.0" BorderPane.alignment="CENTER">
+                        <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                            <Button id="next_button_1" mnemonicParsing="false" onAction="#handle_next_button" text="Далі" GridPane.columnIndex="2" />
+                        </children>
+                    </GridPane>
+                </bottom>
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ToggleButton mnemonicParsing="false" prefHeight="25.0" prefWidth="329.0" selected="true" text="Шифрувати" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="mode" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" text="Розшифрувати" toggleGroup="$mode" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </center>
+            </BorderPane>
+        </content>
+    </Tab>
+    <Tab onSelectionChanged="#changeTab" text="Джерело">
+        <content>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+                <bottom>
+                    <GridPane alignment="TOP_CENTER" prefHeight="80" prefWidth="600.0" BorderPane.alignment="CENTER">
+                        <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                            <Button mnemonicParsing="false" onAction="#handle_prev_button" text="Назад" GridPane.columnIndex="0" />
+                            <Button mnemonicParsing="false" onAction="#handle_next_button" text="Далі" GridPane.columnIndex="2" />
+                        </children>
+                    </GridPane>
+                </bottom>
+               <center>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="openInputFileField" prefHeight="25.0" prefWidth="300.0" />
+                        <Button fx:id="openInputFile" mnemonicParsing="false" onAction="#openFile" text="Шукати..." />
+                     </children>
+                  </HBox>
+               </center>
+            </BorderPane>
+        </content>
+
+    </Tab>
+      <Tab onSelectionChanged="#changeTab" text="Алгоритм">
+          <content>
+              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <bottom>
+                      <GridPane alignment="TOP_CENTER" prefHeight="80" prefWidth="600.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                          <children>
+                              <Button mnemonicParsing="false" onAction="#handle_prev_button" text="Назад" GridPane.columnIndex="0" />
+                              <Button mnemonicParsing="false" onAction="#handle_next_button" text="Далі" GridPane.columnIndex="2" />
+                          </children>
+                      </GridPane>
+                  </bottom>
+               <center>
+                  <VBox fx:id="cyphers" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                     </children>
+                  </VBox>
+               </center>
+              </BorderPane>
+          </content>
+      </Tab>
+      <Tab onSelectionChanged="#changeTab" text="Результат">
+          <content>
+              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <bottom>
+                      <GridPane alignment="TOP_CENTER" prefHeight="80" prefWidth="600.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                          <children>
+                              <Button mnemonicParsing="false" onAction="#handle_prev_button" text="Назад" GridPane.columnIndex="0" />
+                              <Button mnemonicParsing="false" onAction="#collectAllData" text="Виконати!" GridPane.columnIndex="2" />
+                          </children>
+                      </GridPane>
+                  </bottom>
+               <center>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="openOutputFileField" prefHeight="25.0" prefWidth="300.0" />
+                        <Button fx:id="openOutputFile" mnemonicParsing="false" onAction="#openFile" text="Обрати..." />
+                     </children>
+                  </HBox>
+               </center>
+              </BorderPane>
+          </content>
+      </Tab>
+  </tabs>
+</TabPane>
