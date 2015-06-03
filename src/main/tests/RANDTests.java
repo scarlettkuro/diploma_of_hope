@@ -2,9 +2,8 @@
  * Created by kuro on 31.05.15.
  */
 import com.fasteasytrade.JRandTest.IO.FileRandomStream;
-import com.fasteasytrade.JRandTest.Tests.Base;
-import com.fasteasytrade.JRandTest.Tests.Count4Bits;
-import com.fasteasytrade.JRandTest.Tests.MonteCarlo;
+import AdvancedTests.Base;
+import AdvancedTests.MonteCarlo;
 import junit.framework.TestCase;
 
 public class RANDTests extends TestCase {
@@ -15,28 +14,26 @@ public class RANDTests extends TestCase {
     */
 
     public boolean pushTest(Base test) {
-        String[] file = {"/home/kuro/hui","/home/kuro/Drive2011.jpg"};
+        String[] file = {"/home/kuro/pui","/home/kuro/Drive2011.jpg"};
 
         test.help();
+
+        boolean done = true;
+
         for (int i = 0; i < file.length; i++) {
             try {
                 test.registerInput(new FileRandomStream(file[i]));
-                test.test(file[i]);
+                done = done && test.test(file[i]);
+                System.out.println();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return true;
+        return done;
     }
 
     public void testMonteCarlo() {
         MonteCarlo _test = new MonteCarlo();
         assertTrue(pushTest(_test));
-    }
-
-    public void testCount4Bits() {
-        Count4Bits _test = new Count4Bits();
-        assertTrue(pushTest(_test));
-
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Created on 12/02/2005
+ * Created on 03/02/2005
  *
  * JRandTest package
  *
@@ -31,38 +31,90 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.fasteasytrade.JRandTest.Tests;
+
+package AdvancedTests;
+
+
 
 /**
- * BinaryRankTestFor32x32Matrices from DieHard *
+ * MonteCarlo class extends Base
+ * <p>
+ * Test Monte Carlo. Read x 16 bits, y 16 bits.<br>
+ * if (x,y) distance is larger then (256,256), we count<br> 
+ * a miss... the (x,y) point is not in the circle(256).<br>
+ * Else, we count success.
+ * <p> 
+ * piValue is (success / num_of_points) * 4.
  * 
  * @author Zur Aougav
  */
-public class BinaryRankTestFor32x32Matrices extends
-		BinaryRankTestFor6x8Matrices {
 
-	/*
-	 * @see com.fasteasytrade.JRandTest.AdvancedTests.Base#help()
+public class MonteCarlo extends Base
+{
+
+	/**
+	 * @see Base#help()
 	 */
-	public void help() {
+	public void help()
+	{
 		puts("\n\t|-------------------------------------------------------------|");
-		puts("\t|This is the BINARY RANK TEST for 32x32 matrices. A random 32x|");
-		puts("\t|32 binary matrix is formed, each row a 32-bit random integer.|");
-		puts("\t|The rank is determined. That rank can be from 0 to 32, ranks |");
-		puts("\t|less than 29 are rare, and their counts are pooled with those|");
-		puts("\t|for rank 29.  Ranks are found for 40,000 such random matrices|");
-		puts("\t|and a chisquare test is performed on counts for ranks  32,31,|");
-		puts("\t|30 and <=29.                                                 |");
+		puts("\t|    This is the Monte Carlo test. We read 16 bits as X, and  |");
+		puts("\t|16 bits as Y. If (X,Y) point in circle(256) we count success.|");
+		puts("\t|piValue is (success / num_of_points) * 4.                    |");
 		puts("\t|-------------------------------------------------------------|");
 	}
 
 	/**
-	 * @see com.fasteasytrade.JRandTest.Tests.BinaryRankTestFor6x8Matrices#setParameters()
+	 * @param filename input file with random data
 	 */
-	public void setParameters() {
-		testName = "32x32";
-		rt = 0;
-		no_matrices = 40000;
+	public boolean test(String filename) throws Exception
+	{
+		final int square256 = 256 * 256; // square(radius) of circle(256)
+		long success = 0;
+		long length = 0;
+
+		printf("\t\t\tThe MonteCarlo test for file " + filename + "\n");
+
+		openInputStream();
+
+		byte[] b = new byte[4];
+		int x, y;
+		int i;
+
+		while (true)
+		{
+			for (i = 0; i < 4; i++)
+			{
+				b[i] = readByte();
+				if (!isOpen())
+					break;
+			}
+
+			if (!isOpen())
+				break;
+
+			length++;
+
+			x = ((0xff & b[0]) << 8) | (0xff & b[1]);
+			y = ((0xff & b[2]) << 8) | (0xff & b[3]);
+
+			/*
+			 * Is point(x,y) in circle(256) ?
+			 */
+			if (x * x + y * y <= square256)
+				success++;
+		}
+
+		closeInputStream();
+
+		printf("\n\t found " + length + " points.");
+		printf("\n\t found " + success + " points in circle(256).");
+
+		double piValue = ((double) success / length);
+		piValue *= 4.0;
+		printf("\n\t piValue: " + d4(piValue));
+		//System.out.println(Math.floor(piValue));
+		return  Double.valueOf(3).equals(Math.floor(piValue));
 	}
 
-}
+} // end class
