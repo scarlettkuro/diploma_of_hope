@@ -1,5 +1,5 @@
 This is my diploma about cellular automata in cryptography.
-Build is on Maven. JDK : 1.8 (using JavaFX in Byrd)
+Build is on Gradle. JDK : 1.8 (using JavaFX in Byrd)
 
 It is two projects now. 
 -------------------------
