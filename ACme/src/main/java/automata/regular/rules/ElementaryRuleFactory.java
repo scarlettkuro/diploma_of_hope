@@ -3,7 +3,7 @@ package automata.regular.rules;
 /**
  * Created by kuro on 05.06.15.
  */
-public class ElementaryFactory {
+public class ElementaryRuleFactory {
     public iRegularLocalRule getRule(final int i) {
         return new iRegularLocalRule() {
             @Override

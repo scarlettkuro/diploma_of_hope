@@ -5,6 +5,7 @@ package cyphermethod;
  */
 
 import automata.regular.RegularAutomata;
+import automata.regular.RegularAutomataImpl;
 import misc.Decoder;
 
 import java.io.IOException;

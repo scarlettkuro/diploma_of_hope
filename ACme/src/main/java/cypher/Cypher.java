@@ -1,7 +1,5 @@
 package cypher;
 
-import automata.Automata;
-
 import java.io.InputStream;
 import java.io.OutputStream;
 
