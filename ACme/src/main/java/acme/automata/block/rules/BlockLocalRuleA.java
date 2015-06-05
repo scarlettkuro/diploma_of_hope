@@ -1,4 +1,4 @@
-package automata.block.rules;
+package acme.automata.block.rules;
 
 /**
  * Created by kuro on 04.05.15.
@@ -15,6 +15,11 @@ public class BlockLocalRuleA implements iBlockLocalRule {
         a[1] = matrix[n];
 
         return a;
+    }
+
+    @Override
+    public boolean[] stepback(int n, boolean[] matrix) {
+        return step(n,matrix); //revert rule is same for this rule
     }
 
     public int blockSize() {

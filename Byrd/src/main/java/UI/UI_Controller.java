@@ -1,7 +1,6 @@
 package UI;
 
 import application.CypherService;
-import domain.cypher.Cypher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

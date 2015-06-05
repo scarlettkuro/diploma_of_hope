@@ -1,4 +1,4 @@
-package automata.regular.rules;
+package acme.automata.regular.rules;
 
 /**
  * Created by kuro on 05.06.15.

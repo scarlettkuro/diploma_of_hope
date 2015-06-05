@@ -1,24 +1,23 @@
-package cyphermethod;
+package acme.cyphermethod;
 
 /**
  * Created by kuro on 21.05.15.
  */
 
-import automata.regular.RegularAutomata;
-import automata.regular.RegularAutomataImpl;
-import misc.Decoder;
+import acme.automata.regular.RegularAutomata;
+import acme.misc.Decoder;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class StraightCypherMethod {
+public class StraightRegularMethod {
 
     InputStream input;
     OutputStream output;
     RegularAutomata automata;
 
-    protected boolean cryptBlock() {
+    protected boolean encryptBlock() {
         try {
             //reading block of data from stream
             int left = input.available();
@@ -44,10 +43,10 @@ public class StraightCypherMethod {
         return false;
     }
 
-    public void crypt(InputStream i,OutputStream o) {
+    public void encrypt(InputStream i, OutputStream o) {
         input = i;
         output = o;
-        while(cryptBlock());
+        while(encryptBlock());
     }
 
     public void decrypt(InputStream i, OutputStream o) {

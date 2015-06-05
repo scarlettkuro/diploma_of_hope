@@ -1,6 +1,6 @@
-package automata.regular;
+package acme.automata.regular;
 
-import automata.regular.rules.iRegularLocalRule;
+import acme.automata.regular.rules.iRegularLocalRule;
 
 /**
  * Created by kuro on 05.06.15.

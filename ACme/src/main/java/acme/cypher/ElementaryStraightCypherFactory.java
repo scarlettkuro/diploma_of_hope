@@ -1,9 +1,9 @@
-package cypher;
+package acme.cypher;
 
-import automata.regular.RegularAutomata;
-import automata.regular.RegularAutomataImpl;
-import automata.regular.rules.ElementaryRuleFactory;
-import cyphermethod.StraightCypherMethod;
+import acme.automata.regular.RegularAutomata;
+import acme.automata.regular.RegularAutomataImpl;
+import acme.automata.regular.rules.ElementaryRuleFactory;
+import acme.cyphermethod.StraightRegularMethod;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -15,7 +15,7 @@ public class ElementaryStraightCypherFactory {
     public Cypher getCypher(final int i) {
         return new Cypher() {
 
-            StraightCypherMethod method = new StraightCypherMethod();
+            StraightRegularMethod method = new StraightRegularMethod();
             RegularAutomata automata = new RegularAutomataImpl();
             ElementaryRuleFactory ruleFactory = new ElementaryRuleFactory();
 
@@ -25,8 +25,8 @@ public class ElementaryStraightCypherFactory {
             }
 
             @Override
-            public void crypt(InputStream i, OutputStream o) {
-                method.crypt(i, o);
+            public void encrypt(InputStream i, OutputStream o) {
+                method.encrypt(i, o);
             }
 
 

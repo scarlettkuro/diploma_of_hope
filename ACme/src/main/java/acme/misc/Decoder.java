@@ -1,6 +1,6 @@
-package misc;
+package acme.misc;
 
-//transform byte data to boolean data for cellular domain.automata
+//transform byte data to boolean data for cellular automata
 
 public class Decoder {
 	static public boolean[] bytebit(byte[] orig) {

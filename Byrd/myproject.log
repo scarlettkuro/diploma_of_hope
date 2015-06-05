@@ -1,0 +1,7 @@
+00:26:33,190  INFO main _Main:main:37 - ACme started
+
+00:26:48,669  INFO JavaFX Application Thread _Main:start:16 - Loading .fxml markup
+00:26:53,849  INFO JavaFX Application Thread _Main:start:24 - Connect controller
+00:26:53,897  INFO JavaFX Application Thread UI_Controller:init:51 - UI Controller initialize
+00:26:53,925  INFO JavaFX Application Thread _Main:start:31 - Show UI
+00:27:04,009  INFO main _Main:main:42 - ACme closed

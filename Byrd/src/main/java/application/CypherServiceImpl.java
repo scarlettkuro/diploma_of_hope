@@ -1,9 +1,10 @@
 package application;
 
-import domain.cypher.Cypher;
-import domain.cypher.RotateAutomataCypher;
-import domain.cypher.SimpleCypher;
-import domain.cyphermethod.StraightCypherMethod;
+
+
+import acme.cypher.BlockCypherA;
+import acme.cypher.Cypher;
+import acme.cypher.ElementaryStraightCypherFactory;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -16,12 +17,15 @@ import java.util.Map;
  */
 public class CypherServiceImpl implements CypherService {
     static private final Logger LOG=Logger.getLogger(CypherServiceImpl.class);
-    private  Map<String,Cypher> cyphers;
+    private  Map<String, Cypher> cyphers;
 
     public CypherServiceImpl() {
         cyphers = new HashMap<String,Cypher>();
-        cyphers.put("straight",new SimpleCypher());
-        cyphers.put("rotate", new RotateAutomataCypher());
+        ElementaryStraightCypherFactory factory = new ElementaryStraightCypherFactory();
+        cyphers.put("rule34",factory.getCypher(34));
+        cyphers.put("rule110",factory.getCypher(110));
+        cyphers.put("rule193",factory.getCypher(193));
+//        cyphers.put("blockA", new BlockCypherA());
     }
 
     public Iterator<String> getIdList() { return cyphers.keySet().iterator(); }
@@ -43,7 +47,7 @@ public class CypherServiceImpl implements CypherService {
         foutput = new FileOutputStream(output);
 
         if (mode)
-            cyphers.get(id).crypt(finput,foutput);
+            cyphers.get(id).encrypt(finput,foutput);
         else
             cyphers.get(id).decrypt(finput,foutput);
 

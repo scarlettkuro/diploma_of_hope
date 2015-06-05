@@ -1,19 +1,17 @@
-package automata.block;
+package acme.automata.block;
 
 
-import automata.Automata;
-import automata.ReversibleAutomata;
-import automata.block.rules.iBlockLocalRule;
+import acme.automata.block.rules.iBlockLocalRule;
 
-public class BlockAutomata implements ReversibleAutomata {
+public class BlockAutomataImpl implements  BlockAutomata{
 	private boolean[] _cur; //current layer with elements
 	int dx = 0; //count of steps
 	iBlockLocalRule rule; //local rule
 
-	public BlockAutomata() {
+	public BlockAutomataImpl() {
 	}
 	
-	public BlockAutomata(boolean[] init) {
+	public BlockAutomataImpl(boolean[] init) {
 		setState(init);
 	}
 
@@ -32,14 +30,30 @@ public class BlockAutomata implements ReversibleAutomata {
 		return _cur;
 	}
 
-	public boolean[] stepback() {
-		return new boolean[0];
-	}
 
 	//make n steps
 	public boolean[] step(int n) {
 		for(int i=0; i<n;i++)
 			step();
+		return getMatrix();
+	}
+
+	@Override
+	public boolean[] stepbackFrom(int step) {
+		dx = step % rule.blockSize();
+		for(int i=dx; i<_cur.length-1; i+=rule.blockSize()) {
+			boolean[] ans = rule.step(i, _cur); //get new values of elements in the block
+			for(int j=0; j<ans.length;j++) //and put them here
+				_cur[i+j] = ans[j];
+		}
+		dx--; if (dx<0) dx = rule.blockSize()-1;
+		return _cur;
+	}
+
+	@Override
+	public boolean[] stepbackFrom(int stepFrom, int n) {
+		for(int i=0; i<n;i++)
+			step(stepFrom-i);
 		return getMatrix();
 	}
 
