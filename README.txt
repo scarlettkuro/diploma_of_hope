@@ -10,10 +10,11 @@ ACme consists of automatas, their local rules, cypher strategies and cyphers, co
 Automata types: Regular (Plain), Block
 
 --Regular (Plain): with N inputs to one output
+-- -- Support of Elementary CA
 --Block: with input and output to some group of elements
 
 Strategies: Straight 
---Straight:data passes 10 times throw the automata
+--Straight: data passes 10 times throw the automata
 
 Strategies use some concrete CA to perform transformations.
 I support such CA now:

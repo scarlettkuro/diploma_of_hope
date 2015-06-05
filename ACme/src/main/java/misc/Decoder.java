@@ -1,4 +1,4 @@
-package domain.misc;
+package misc;
 
 //transform byte data to boolean data for cellular domain.automata
 

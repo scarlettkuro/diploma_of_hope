@@ -1,6 +1,6 @@
-package domain.cypher;
+package cypher;
 
-import domain.automata.Automata;
+import automata.Automata;
 
 import java.io.InputStream;
 import java.io.OutputStream;

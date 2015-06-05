@@ -1,4 +1,4 @@
-package domain.automata.block.rules;
+package automata.block.rules;
 
 /**
  * Created by kuro on 04.05.15.

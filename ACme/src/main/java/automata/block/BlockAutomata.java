@@ -1,9 +1,9 @@
-package domain.automata.block;
+package automata.block;
 
 
-import domain.automata.Automata;
-import domain.automata.ReversibleAutomata;
-import domain.automata.block.rules.iBlockLocalRule;
+import automata.Automata;
+import automata.ReversibleAutomata;
+import automata.block.rules.iBlockLocalRule;
 
 public class BlockAutomata implements ReversibleAutomata {
 	private boolean[] _cur; //current layer with elements

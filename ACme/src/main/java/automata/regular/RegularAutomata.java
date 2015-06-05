@@ -1,13 +1,13 @@
-package domain.automata.regular;
+package automata.regular;
 
+import automata.regular.rules.iRegularLocalRule;
 
-import domain.automata.Automata;
-import domain.automata.regular.rules.iRegularLocalRule;
-
-public class RegularAutomata implements Automata {
+public class RegularAutomata {
 	private boolean[] _cur; //current layer of elements
 	private boolean[] _next; //layer  where we put new values of elemets
-	iRegularLocalRule rule;
+	private iRegularLocalRule rule;
+
+	public RegularAutomata() {}
 	
 	public RegularAutomata(boolean[] init) {
 		setState(init);
@@ -23,12 +23,15 @@ public class RegularAutomata implements Automata {
 		for(int i=0; i<_next.length; i++)
 			_next[i] = rule.step(i, _cur);
 
-		//switch layers when we form next generation (make it current)
+		swapLayers();
+		
+		return _cur;
+	}
+
+	private void swapLayers() { //switch layers when we form next generation (make it current)
 		boolean[] temp = _cur;
 		_cur = _next;
 		_next = temp;
-		
-		return _cur;
 	}
 
 	//make n steps
