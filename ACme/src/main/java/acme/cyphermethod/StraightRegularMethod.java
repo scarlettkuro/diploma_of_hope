@@ -28,7 +28,7 @@ public class StraightRegularMethod {
             automata.setState(Decoder.bytebit(hey));
             automata.step(10);
             //write block to the outputstream
-            output.write(Decoder.bitbyte(automata.getMatrix()));
+            output.write(Decoder.bitbyte(automata.getState()));
         } catch (IOException e) {
             //end crypting when I/O failed or file ended
             return false;

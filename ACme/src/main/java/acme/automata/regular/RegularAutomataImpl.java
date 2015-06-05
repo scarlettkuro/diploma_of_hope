@@ -38,10 +38,10 @@ public class RegularAutomataImpl implements  RegularAutomata {
 	public boolean[] step(int n) {
 		for(int i=0; i<n;i++)
 			step();
-		return getMatrix();
+		return getState();
 	}
 	
-	public boolean[] getMatrix() {
+	public boolean[] getState() {
 		return _cur;
 	}
 	

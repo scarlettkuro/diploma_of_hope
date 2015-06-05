@@ -35,7 +35,7 @@ public class BlockAutomataImpl implements  BlockAutomata{
 	public boolean[] step(int n) {
 		for(int i=0; i<n;i++)
 			step();
-		return getMatrix();
+		return getState();
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class BlockAutomataImpl implements  BlockAutomata{
 	public boolean[] stepbackFrom(int stepFrom, int n) {
 		for(int i=0; i<n;i++)
 			step(stepFrom-i);
-		return getMatrix();
+		return getState();
 	}
 
 	public boolean[] stepback(int n) {
@@ -66,10 +66,10 @@ public class BlockAutomataImpl implements  BlockAutomata{
 				_cur[i+j] = ans[j];
 		}
 		dx--;
-		return getMatrix();
+		return getState();
 	}
 	
-	public boolean[] getMatrix() {
+	public boolean[] getState() {
 		return _cur;
 	}
 	

@@ -26,7 +26,7 @@ public class StraightBlockMethod {
             automata.setState(Decoder.bytebit(datablock));
             automata.step(10);
             //write block to the outputstream
-            output.write(Decoder.bitbyte(automata.getMatrix()));
+            output.write(Decoder.bitbyte(automata.getState()));
         } catch (IOException e) {
             //end encrypting when I/O failed or file ended
             return false;
@@ -48,7 +48,7 @@ public class StraightBlockMethod {
             automata.setState(Decoder.bytebit(datablock));
             automata.stepbackFrom(10, 10);
             //write block to the outputstream
-            output.write(Decoder.bitbyte(automata.getMatrix()));
+            output.write(Decoder.bitbyte(automata.getState()));
         } catch (IOException e) {
             //end decrypting when I/O failed or file ended
             return false;

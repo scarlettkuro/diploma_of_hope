@@ -8,8 +8,8 @@ import acme.automata.regular.rules.iRegularLocalRule;
 public interface RegularAutomata {
 
     void setState(boolean[] init);
+    boolean[] getState();
     boolean[] step() ;
     boolean[] step(int n) ;
-    boolean[] getMatrix();
     void setRule(iRegularLocalRule r);
 }
