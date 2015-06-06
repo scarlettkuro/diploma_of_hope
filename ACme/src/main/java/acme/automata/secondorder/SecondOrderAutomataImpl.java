@@ -1,6 +1,5 @@
 package acme.automata.secondorder;
 
-import acme.automata.regular.rules.iRegularLocalRule;
 import acme.automata.secondorder.rules.SecondOrderRule;
 
 /**
@@ -35,23 +34,39 @@ public class SecondOrderAutomataImpl implements SecondOrderAutomata {
 
     @Override
     public boolean[] step() {
-        return new boolean[0];
+
+        //apply local rule to each element
+        for(int i=0; i<_next.length; i++)
+            _next[i] = rule.step(i, _prev[i], _cur);
+
+        swapLayers();
+
+        return _cur;
     }
 
     @Override
     public boolean[] step(int n) {
-        return new boolean[0];
+        for(int i=0; i<n;i++)
+            step();
+        return getState();
     }
 
     @Override
-    public boolean[] stepback() {
-        return new boolean[0];
+    public void reverse() {
+        boolean[] temp = _prev;
+        _prev = _cur;
+        _cur = temp;
+
     }
 
-    @Override
-    public boolean[] stepback(int n) {
-        return new boolean[0];
+    private void swapLayers() {
+        boolean[] temp = _prev;
+        _prev = _cur;
+        _cur = _next;
+        _next = temp;
     }
+
+
 
     @Override
     public void setRule(SecondOrderRule r) {

@@ -12,7 +12,6 @@ public interface SecondOrderAutomata {
     boolean[] getState();
     boolean[] step();
     boolean[] step(int n);
-    boolean[] stepback();
-    boolean[] stepback(int n);
+    void reverse();
     void setRule(SecondOrderRule r);
 }
