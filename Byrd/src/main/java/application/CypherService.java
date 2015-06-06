@@ -12,7 +12,7 @@ import java.util.Iterator;
 public interface CypherService {
     Iterator<String> getIdList();
     String getNameOf(String id);
-    void transformFile(String input, String output, boolean mode, String id) throws FileNotFoundException;
+    void transformFile(String input, String output, boolean mode, String id, String key) throws FileNotFoundException;
     //Cypher getCypher(String id);
     //void transformFile(String input, String output, int mode, String id);
 

@@ -122,7 +122,7 @@
                           </rowConstraints>
                           <children>
                               <Button mnemonicParsing="false" onAction="#handle_prev_button" text="Назад" GridPane.columnIndex="0" />
-                              <Button mnemonicParsing="false" onAction="#collectAllData" text="Виконати!" GridPane.columnIndex="2" />
+                              <Button mnemonicParsing="false" onAction="#handle_next_button" text="Далі" GridPane.columnIndex="2" />
                           </children>
                       </GridPane>
                   </bottom>
@@ -134,6 +134,35 @@
                      </children>
                   </HBox>
                </center>
+              </BorderPane>
+          </content>
+      </Tab>
+      <Tab onSelectionChanged="#changeTab" text="Ключ">
+          <content>
+              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <bottom>
+                      <GridPane alignment="TOP_CENTER" prefHeight="80" prefWidth="600.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                          <children>
+                              <Button mnemonicParsing="false" onAction="#handle_prev_button" text="Назад" GridPane.columnIndex="0" />
+                              <Button mnemonicParsing="false" onAction="#collectAllData" text="Виконати!" GridPane.columnIndex="2" />
+                          </children>
+                      </GridPane>
+                  </bottom>
+                  <center>
+                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <children>
+                              <TextField fx:id="key" prefHeight="25.0" prefWidth="300.0" />
+                          </children>
+                      </HBox>
+                  </center>
               </BorderPane>
           </content>
       </Tab>

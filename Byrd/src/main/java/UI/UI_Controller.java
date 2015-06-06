@@ -38,6 +38,7 @@ public class UI_Controller {
 
     Map<Button, TextField> map = null;
     /**/
+    @FXML private TextField key;
 
     private final ToggleGroup automata = new ToggleGroup();
     private CypherService service;
@@ -117,10 +118,11 @@ public class UI_Controller {
         String inputFile = openInputFileField.getText();
         String outputFile = openOutputFileField.getText();
         String cypher = (String)automata.getSelectedToggle().getUserData();
+        String key = this.key.getText();
         boolean cbmode = mode.getToggles().indexOf(mode.getSelectedToggle())==0; //true = шифрування
 
         try {
-            service.transformFile(inputFile, outputFile, cbmode, cypher);
+            service.transformFile(inputFile, outputFile, cbmode, cypher, key);
         } catch (FileNotFoundException e) {
             LOG.error("No such input file or path specified wrong");
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -130,6 +132,8 @@ public class UI_Controller {
 
             alert.showAndWait();
         }
+
+        tabs.getSelectionModel().select(0);
         /*
         System.out.println(inputFile);
         System.out.println(outputFile);

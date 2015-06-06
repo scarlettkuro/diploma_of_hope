@@ -34,7 +34,7 @@ public class CypherServiceImpl implements CypherService {
         return cyphers.get(id).getName();
     }
 
-    public void transformFile(String input, String output, boolean mode, String id) throws FileNotFoundException {
+    public void transformFile(String input, String output, boolean mode, String id,String key) throws FileNotFoundException {
         if (mode)
             LOG.info("Encryption of file: " + input + " to " + output + " with " + id);
         else
@@ -47,9 +47,9 @@ public class CypherServiceImpl implements CypherService {
         foutput = new FileOutputStream(output);
 
         if (mode)
-            cyphers.get(id).encrypt(finput,foutput,"");
+            cyphers.get(id).encrypt(finput,foutput,key);
         else
-            cyphers.get(id).decrypt(finput,foutput,"");
+            cyphers.get(id).decrypt(finput,foutput,key);
 
         if (mode)
             LOG.info("Encryption finished properly");
