@@ -14,4 +14,5 @@ public interface BlockAutomata {
     boolean[] stepbackFrom(int step);
     boolean[] stepbackFrom(int step, int n);
     void setRule(iBlockLocalRule r);
+    int blockSize();
 }

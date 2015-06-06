@@ -76,4 +76,9 @@ public class BlockAutomataImpl implements  BlockAutomata{
 	public void setRule(iBlockLocalRule r) {
 		rule = r;
 	}
+
+	@Override
+	public int blockSize() {
+		return rule.blockSize();
+	}
 }

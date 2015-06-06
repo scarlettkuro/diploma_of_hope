@@ -23,4 +23,12 @@ public class Decoder {
 		
 		return neu;
 	}
+
+	static public boolean[] arrayXOR(boolean[] a, boolean[] b) {
+		int length = Math.min(a.length,b.length);
+		boolean[] result = new boolean[length];
+		for (int i=0; i<length; i++)
+			result[i] = a[i] ^ b[i];
+		return result;
+	}
 }
