@@ -25,14 +25,14 @@ public class ElementaryStraightCypherFactory {
             }
 
             @Override
-            public void encrypt(InputStream i, OutputStream o) {
-                method.encrypt(i, o);
+            public void encrypt(InputStream i, OutputStream o, String key) {
+                method.encrypt(i, o, key);
             }
 
 
             @Override
-            public void decrypt(InputStream i, OutputStream o) {
-                method.decrypt(i, o);
+            public void decrypt(InputStream i, OutputStream o, String key) {
+                method.decrypt(i, o, key);
             }
 
             @Override

@@ -21,11 +21,11 @@ public class CypherServiceImpl implements CypherService {
 
     public CypherServiceImpl() {
         cyphers = new HashMap<String,Cypher>();
-        ElementaryStraightCypherFactory factory = new ElementaryStraightCypherFactory();
+       /* ElementaryStraightCypherFactory factory = new ElementaryStraightCypherFactory();
         cyphers.put("rule34",factory.getCypher(34));
         cyphers.put("rule110",factory.getCypher(110));
-        cyphers.put("rule193",factory.getCypher(193));
-//        cyphers.put("blockA", new BlockCypherA());
+        cyphers.put("rule193",factory.getCypher(193));*/
+        cyphers.put("blockA", new BlockCypherA());
     }
 
     public Iterator<String> getIdList() { return cyphers.keySet().iterator(); }
@@ -47,9 +47,9 @@ public class CypherServiceImpl implements CypherService {
         foutput = new FileOutputStream(output);
 
         if (mode)
-            cyphers.get(id).encrypt(finput,foutput);
+            cyphers.get(id).encrypt(finput,foutput,"");
         else
-            cyphers.get(id).decrypt(finput,foutput);
+            cyphers.get(id).decrypt(finput,foutput,"");
 
         if (mode)
             LOG.info("Encryption finished properly");

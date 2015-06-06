@@ -43,13 +43,13 @@ public class StraightRegularMethod {
         return false;
     }
 
-    public void encrypt(InputStream i, OutputStream o) {
+    public void encrypt(InputStream i, OutputStream o, String key) {
         input = i;
         output = o;
         while(encryptBlock());
     }
 
-    public void decrypt(InputStream i, OutputStream o) {
+    public void decrypt(InputStream i, OutputStream o, String key) {
         input = i;
         output = o;
         while(decryptBlock());

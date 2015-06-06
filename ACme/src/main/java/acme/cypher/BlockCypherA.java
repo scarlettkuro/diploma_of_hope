@@ -16,19 +16,20 @@ public class BlockCypherA implements Cypher{
     StraightBlockMethod method;
 
     public BlockCypherA() {
+        method = new StraightBlockMethod();
         BlockAutomata automata = new BlockAutomataImpl();
         automata.setRule(new BlockLocalRuleA());
         method.setAutomata(automata);
     }
 
     @Override
-    public void encrypt(InputStream i, OutputStream o) {
-        method.encrypt(i,o);
+    public void encrypt(InputStream i, OutputStream o, String key) {
+        method.encrypt(i,o, key);
     }
 
     @Override
-    public void decrypt(InputStream i, OutputStream o) {
-        method.decrypt(i,o);
+    public void decrypt(InputStream i, OutputStream o, String key) {
+        method.decrypt(i,o, key);
     }
 
     @Override
