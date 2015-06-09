@@ -1,6 +1,7 @@
 package acme.cyphermethod;
 
 import acme.automata.block.BlockAutomata;
+import acme.misc.BooleanStreamReader;
 import acme.misc.Decoder;
 
 import java.io.IOException;
@@ -12,22 +13,33 @@ import java.io.OutputStream;
  */
 public class StraightBlockMethod {
     InputStream input;
+    BooleanStreamReader inputReader = new BooleanStreamReader();
     OutputStream output;
+    String key;
     BlockAutomata automata;
 
-    protected boolean encryptBlock() {
+    int steps = 0;
+    int blockSize = 1;
+    boolean[] prevState;
+    // boolean[] curState;
+
+    public StraightBlockMethod(int stepNumber){
+        steps = stepNumber;
+    }
+
+
+    protected boolean encryptNextBlock() {
         try {
-            //reading block of data from stream
-            int left = input.available();
-            if (left==0) return false;
-            byte[] datablock = new byte[Math.min(left,8)];
-            input.read(datablock);
+
             //10 step transformation through automata
-            automata.setState(Decoder.bytebit(datablock));
-            automata.step(10);
+            //automata.setState(Decoder.arrayXOR(inputReader.readBlock(blockSize, false), prevState));
+            automata.setState(inputReader.readBlock(blockSize,false));
+            automata.step(steps);
+            prevState = automata.getState().clone();
             //write block to the outputstream
+
             output.write(Decoder.bitbyte(automata.getState()));
-        } catch (IOException e) {
+        } catch (Exception e) {
             //end encrypting when I/O failed or file ended
             return false;
         }
@@ -37,19 +49,21 @@ public class StraightBlockMethod {
 
 
 
-    protected boolean decryptBlock() {
+    protected boolean decryptNextBlock() {
         try {
-            //reading block of data from stream
-            int left = input.available();
-            if (left==0) return false;
-            byte[] datablock = new byte[Math.min(left,8)];
-            input.read(datablock);
-            //10 step transformation through automata
-            automata.setState(Decoder.bytebit(datablock));
-            automata.stepbackFrom(10, 10);
+            //prevState = inputReader.readBlock(blockSize, false);
+            //prevState = readBlock();
+            boolean[] curState = inputReader.readBlock(blockSize, false);
+            automata.setState(curState.clone());
+            automata.stepbackFrom(steps, steps);
             //write block to the outputstream
-            output.write(Decoder.bitbyte(automata.getState()));
-        } catch (IOException e) {
+
+            output.write(Decoder.bitbyte(
+                    //Decoder.arrayXOR(prevState, automata.getState())
+                    automata.getState()
+            ));
+            prevState= curState;
+        } catch (Exception e) {
             //end decrypting when I/O failed or file ended
             return false;
         }
@@ -57,19 +71,28 @@ public class StraightBlockMethod {
         return true;
     }
 
-    public void encrypt(InputStream i, OutputStream o, String key) {
+    public void encrypt(InputStream i, OutputStream o, String k) {
         input = i;
+        inputReader.setStream(input);
         output = o;
-        while(encryptBlock());
+        key = k;
+        prevState = Decoder.bytebit(k.getBytes());
+        while(encryptNextBlock());
     }
 
-    public void decrypt(InputStream i, OutputStream o, String key) {
+    public void decrypt(InputStream i, OutputStream o, String k) {
         input = i;
         output = o;
-        while(decryptBlock());
+        key = k;
+        prevState = Decoder.bytebit(k.getBytes());
+        while(decryptNextBlock());
     }
 
     public void setAutomata(BlockAutomata a) {
         automata = a;
+    }
+
+    public void setBlockSize(int s) {
+        blockSize = s;
     }
 }
