@@ -15,42 +15,48 @@ public class BlockAutomataImplTest extends TestCase {
     {
         automata.setRule(factory.getRule(new int[]{0, 1, 2, 3}));
     }
+    boolean[] A0 = new boolean[]{false, true,true, false};
+    boolean[] A1 = new boolean[]{true, false, true, true};
+    boolean[] A2 = new boolean[]{false, true, false, false};
 
     public void testStep() throws Exception {
 
-        automata.setState(new boolean[]{false, true,true, false});
-        assertTrue(Arrays.equals(
-                automata.step(),
-                new boolean[]{true, false, false, true}
-        ));
+        automata.setState(A0);/*
+        System.out.println(Arrays.toString(automata.getState()));
+        System.out.println(Arrays.toString(automata.step()));
+        System.out.println(Arrays.toString(automata.step()));
+        System.out.println(Arrays.toString(automata.stepbackFrom(1)));
+        System.out.println(Arrays.toString(automata.stepbackFrom(1)));*/
+        assertTrue(
+              Arrays.equals(
+                automata.step(), A1
+        )
+        );
     }
 
     public void testStep2() throws Exception {
 
-        automata.setState(new boolean[]{false, true,true, false});
+        automata.setState(A0);
 
         assertTrue(Arrays.equals(
-                automata.step(2),
-                new boolean[]{false, true, true, false}
+                automata.step(2), A2
         ));
     }
 
     public void testStepBack() throws Exception {
 
-        automata.setState(new boolean[]{true, false, false, true});
+        automata.setState(A1);
         assertTrue(Arrays.equals(
-                automata.stepbackFrom(1),
-                new boolean[]{false, true,true, false}
+                automata.stepbackFrom(1), A0
         ));
     }
 
     public void testStepBack2() throws Exception {
 
-        automata.setState(new boolean[]{false, true, true, false});
+        automata.setState(A2);
 
         assertTrue(Arrays.equals(
-                automata.step(2),
-                new boolean[]{false, true,true, false}
+                automata.stepbackFrom(2, 2), A0
         ));
     }
 }

@@ -32,19 +32,21 @@ public class BlockRuleFactory {
             @Override
             public boolean[] stepback(int n, boolean[] matrix) {
                 int state = stateOfB(n,matrix);
-                System.out.println("was: " + state);
+                //System.out.println("was: " + state);
                 int indexOfNextState = stateset.indexOf(state) - 1 > 0?
                         stateset.indexOf(state) - 1 : stateset.size()-1;
                         //stateset.indexOf(state) + 1 : 0;
-                System.out.println("next: " + indexOfNextState );
+                //System.out.println("next: " + indexOfNextState );
                 return stateOfI(stateset.get(indexOfNextState));
             }
 
             private int stateOfB(int n, boolean[] matrix) {
                 int state = 0;
                 for(int i=0; i<size;i++)
-                    if (matrix[n+size-i-1]) state+=Math.pow(2,i);
-                System.out.println(state);
+                    if (matrix[(n+size-i
+                            -1
+                    )%matrix.length]) state+=Math.pow(2,i);
+                //System.out.println(state);
                 return state;
             }
 
@@ -55,8 +57,8 @@ public class BlockRuleFactory {
                   //          System.out.println
                                     ((state & (1 << i)) != 0)
                 ;
-                for (int i=0; i<size;i++)
-                    System.out.println(bits[i]);
+                /*for (int i=0; i<size;i++)
+                    System.out.println(bits[i]);*/
                 return bits;
             }
 

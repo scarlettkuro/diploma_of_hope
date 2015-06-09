@@ -36,11 +36,33 @@ public class BlockRuleFactoryTest extends TestCase {
 
     }
 
+
+
+    public void testGetRule_stepForward2Step() throws Exception {
+        iBlockLocalRule rule = factory.getRule(new int[]{0,1, 2, 3});
+
+        assertTrue(Arrays.equals(
+
+                rule.step(1, new boolean[]{false, true}),
+                new boolean[]{true, true}
+        ));
+
+    }
+
     public void testGetRule_stepBack() throws Exception {
         iBlockLocalRule rule = factory.getRule(new int[]{0, 1, 2, 3});
         assertTrue(Arrays.equals(
                 rule.stepback(0, new boolean[]{true, false}),
                 new boolean[]{false, true}
+        ));
+
+    }
+
+    public void testGetRule_stepBack2Step() throws Exception {
+        iBlockLocalRule rule = factory.getRule(new int[]{0, 1, 2, 3});
+        assertTrue(Arrays.equals(
+                rule.stepback(1, new boolean[]{true, false}),
+                new boolean[]{true, true}
         ));
 
     }

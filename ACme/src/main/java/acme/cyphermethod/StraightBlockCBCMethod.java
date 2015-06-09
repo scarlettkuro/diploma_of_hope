@@ -19,8 +19,9 @@ public class StraightBlockCBCMethod {
     BlockAutomata automata;
 
     int steps = 0;
-    final int blockSize = 8;
+    int blockSize = 1;
     boolean[] prevState;
+   // boolean[] curState;
 
     public StraightBlockCBCMethod(int stepNumber){
         steps = stepNumber;
@@ -31,7 +32,8 @@ public class StraightBlockCBCMethod {
         try {
 
             //10 step transformation through automata
-            automata.setState(Decoder.arrayXOR(inputReader.readBlock(blockSize, false),prevState));
+            automata.setState(Decoder.arrayXOR(inputReader.readBlock(blockSize, false), prevState));
+            //automata.setState(inputReader.readBlock(blockSize,false));
             automata.step(steps);
             prevState = automata.getState().clone();
             //write block to the outputstream
@@ -49,16 +51,18 @@ public class StraightBlockCBCMethod {
 
     protected boolean decryptNextBlock() {
         try {
-
-            boolean[] curState = prevState.clone();
+            //prevState = inputReader.readBlock(blockSize, false);
             //prevState = readBlock();
-            automata.setState(inputReader.readBlock(blockSize, false));
+            boolean[] curState = inputReader.readBlock(blockSize, false);
+            automata.setState(curState.clone());
             automata.stepbackFrom(steps, steps);
             //write block to the outputstream
 
             output.write(Decoder.bitbyte(
-                    Decoder.arrayXOR(prevState,automata.getState())
+                    Decoder.arrayXOR(prevState, automata.getState())
+                    //automata.getState()
             ));
+            prevState= curState;
         } catch (Exception e) {
             //end decrypting when I/O failed or file ended
             return false;
@@ -86,5 +90,9 @@ public class StraightBlockCBCMethod {
 
     public void setAutomata(BlockAutomata a) {
         automata = a;
+    }
+
+    public void setBlockSize(int s) {
+        blockSize = s;
     }
 }

@@ -17,16 +17,17 @@ public class BlockAutomataImpl implements  BlockAutomata{
 
 	public void setState(boolean[] init) {
 		_cur = init;
+		dx = 0;
 	}
 
 	public boolean[] step() {
 		//apply local rule to each block of the layer
-		for(int i=dx; i<_cur.length-1; i+=rule.blockSize()) {
+		for(int i=dx; i<_cur.length; i+=rule.blockSize()) {
 			boolean[] ans = rule.step(i, _cur); //get new values of elements in the block
 			for(int j=0; j<ans.length;j++) //and put them here
-				_cur[i+j] = ans[j];
+				_cur[(i+j) % _cur.length] = ans[j];
 		}
-		dx++; dx = dx % rule.blockSize();
+		dx++; //dx = dx % rule.blockSize();
 		return _cur;
 	}
 
@@ -40,27 +41,28 @@ public class BlockAutomataImpl implements  BlockAutomata{
 
 	@Override
 	public boolean[] stepbackFrom(int step) {
+		//step--;
 		dx = step % rule.blockSize();
-		for(int i=dx; i<_cur.length-1; i+=rule.blockSize()) {
-			boolean[] ans = rule.step(i, _cur); //get new values of elements in the block
-			for(int j=0; j<ans.length;j++) //and put them here
-				_cur[i+j] = ans[j];
-		}
 		dx--; if (dx<0) dx = rule.blockSize()-1;
+		for(int i=dx; i<_cur.length; i+=rule.blockSize()) {
+			boolean[] ans = rule.stepback(i, _cur); //get new values of elements in the block
+			for(int j=0; j<ans.length;j++) //and put them here
+				_cur[(i+j) % _cur.length] = ans[j];
+		}
 		return _cur;
 	}
 
 	@Override
 	public boolean[] stepbackFrom(int stepFrom, int n) {
 		for(int i=0; i<n;i++)
-			step(stepFrom-i);
+			stepbackFrom(stepFrom-i);
 		return getState();
 	}
-
+/*
 	public boolean[] stepback(int n) {
 		//apply local rule to each block of the layer
-		dx = n;
-		for(int i=(dx % rule.blockSize()); i<_cur.length-1; i+=rule.blockSize()) {
+		dx = n % rule.blockSize();
+		for(int i=dx; i<_cur.length; i+=rule.blockSize()) {
 			boolean[] ans = rule.step(i, _cur); //get new values of elements in the block
 			for(int j=0; j<ans.length;j++) //and put them here
 				_cur[i+j] = ans[j];
@@ -68,7 +70,7 @@ public class BlockAutomataImpl implements  BlockAutomata{
 		dx--;
 		return getState();
 	}
-	
+	*/
 	public boolean[] getState() {
 		return _cur;
 	}
