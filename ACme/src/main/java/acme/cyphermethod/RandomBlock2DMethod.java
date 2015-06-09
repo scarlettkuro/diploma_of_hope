@@ -1,6 +1,7 @@
 package acme.cyphermethod;
 
 import acme.automata.block.BlockAutomata;
+import acme.automata.block2D.Block2DAutomata;
 import acme.misc.Decoder;
 
 import java.io.IOException;
@@ -9,20 +10,20 @@ import java.io.OutputStream;
 import java.util.Random;
 
 /**
- * Created by kuro on 05.06.15.
+ * Created by kuro on 08.06.15.
  */
-public class FiniteBlockMethod {
+public class RandomBlock2DMethod {
+    /*
     InputStream input;
     OutputStream output;
     String key;
-    BlockAutomata automata;
+    boolean[] keyb;
+    Block2DAutomata automata;
+    Random random = new Random();
 
     int steps = 0;
     boolean[] prevState;
 
-    public FiniteBlockMethod(int stepNumber){
-        steps = stepNumber;
-    }
 
     private boolean[] readBlock() throws IOException {
 
@@ -41,12 +42,14 @@ public class FiniteBlockMethod {
         try {
 
             //10 step transformation through automata
-            automata.setState(Decoder.arrayXOR(readBlock() , prevState));
+            automata.setFirstLine(prevState);
+            automata.setSecondLine(readBlock());
+            //automata.setState(Decoder.arrayXOR(readBlock() , prevState));
             automata.step(steps);
-            prevState = automata.getState().clone();
+            prevState = automata.getSecondLine();
             //write block to the outputstream
 
-            output.write(Decoder.bitbyte(automata.getState()));
+            output.write(Decoder.bitbyte(automata.getFirstLine()));
         } catch (IOException e) {
             //end encrypting when I/O failed or file ended
             return false;
@@ -96,4 +99,65 @@ public class FiniteBlockMethod {
     public void setAutomata(BlockAutomata a) {
         automata = a;
     }
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

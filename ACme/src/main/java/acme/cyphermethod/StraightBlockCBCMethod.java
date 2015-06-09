@@ -2,52 +2,42 @@ package acme.cyphermethod;
 
 import acme.automata.block.BlockAutomata;
 import acme.misc.Decoder;
+import acme.misc.BooleanStreamReader;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Random;
 
 /**
- * Created by kuro on 05.06.15.
+ * Created by kuro on 09.06.15.
  */
-public class FiniteBlockMethod {
+public class StraightBlockCBCMethod {
     InputStream input;
+    BooleanStreamReader inputReader = new BooleanStreamReader();
     OutputStream output;
     String key;
     BlockAutomata automata;
 
     int steps = 0;
+    final int blockSize = 8;
     boolean[] prevState;
 
-    public FiniteBlockMethod(int stepNumber){
+    public StraightBlockCBCMethod(int stepNumber){
         steps = stepNumber;
     }
 
-    private boolean[] readBlock() throws IOException {
-
-        //reading block of data from stream
-        int left = input.available();
-        //if (left==0) return false;
-        byte[] datablock =
-                //new byte[Math.min(left,8)];
-                new byte[8];
-
-        input.read(datablock);
-        return Decoder.bytebit(datablock);
-    }
 
     protected boolean encryptNextBlock() {
         try {
 
             //10 step transformation through automata
-            automata.setState(Decoder.arrayXOR(readBlock() , prevState));
+            automata.setState(Decoder.arrayXOR(inputReader.readBlock(blockSize, false),prevState));
             automata.step(steps);
             prevState = automata.getState().clone();
             //write block to the outputstream
 
             output.write(Decoder.bitbyte(automata.getState()));
-        } catch (IOException e) {
+        } catch (Exception e) {
             //end encrypting when I/O failed or file ended
             return false;
         }
@@ -61,15 +51,15 @@ public class FiniteBlockMethod {
         try {
 
             boolean[] curState = prevState.clone();
-            prevState = readBlock();
-            automata.setState(prevState.clone());
+            //prevState = readBlock();
+            automata.setState(inputReader.readBlock(blockSize, false));
             automata.stepbackFrom(steps, steps);
             //write block to the outputstream
 
             output.write(Decoder.bitbyte(
-                    Decoder.arrayXOR(curState,automata.getState())
+                    Decoder.arrayXOR(prevState,automata.getState())
             ));
-        } catch (IOException e) {
+        } catch (Exception e) {
             //end decrypting when I/O failed or file ended
             return false;
         }
@@ -79,9 +69,10 @@ public class FiniteBlockMethod {
 
     public void encrypt(InputStream i, OutputStream o, String k) {
         input = i;
+        inputReader.setStream(input);
         output = o;
         key = k;
-        prevState = Decoder.bytebit(key.getBytes());
+        prevState = Decoder.bytebit(k.getBytes());
         while(encryptNextBlock());
     }
 
@@ -89,7 +80,7 @@ public class FiniteBlockMethod {
         input = i;
         output = o;
         key = k;
-        prevState = Decoder.bytebit(key.getBytes());
+        prevState = Decoder.bytebit(k.getBytes());
         while(decryptNextBlock());
     }
 

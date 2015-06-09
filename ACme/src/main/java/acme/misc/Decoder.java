@@ -31,4 +31,24 @@ public class Decoder {
 			result[i] = a[i] ^ b[i];
 		return result;
 	}
+	/*
+	static public int booleanToInteger(int n, boolean[] matrix){
+		int state = 0;
+		for(int i=0; i<size;i++)
+			if (matrix[n+size-i-1]) state+=Math.pow(2,i);
+		return state;
+	}
+	static public boolean[] integerToBoolean(int state) {
+		int size = (int)Math.floor(Math.log(state)/Math.log(2));
+
+		boolean[] bits = new boolean[size];
+		for (int i = size-1; i > 0; i--)
+			bits[size-i] =
+					//          System.out.println
+					((state & (1 << i)) != 0)
+					;
+		for (int i=0; i<size;i++)
+			System.out.println(bits[i]);
+		return bits;
+	}*/
 }
